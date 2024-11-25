@@ -25,7 +25,7 @@ The data must be given as a CSV file with the following columns: "r1", "r2", "r3
 
 The CSV file must have exactly 64 rows: one for each team. For team number i, The value given in each "rj" column is the probability that team i wins round j. Note that this is **not** the conditional probability that team i wins round j given it makes round j, but the raw probability. For example, the r6 value is the probability of winning the whole tournament. The Athletic currently provides this kind of data, or it can be backed into through Vegas Odds and some good old-fashioned elbow grease. 
 
-A sample data file can be found at `sample_data.CSV`
+A sample data file can be found at `SampleData.CSV`
 
 
 ### Scoring Systems
