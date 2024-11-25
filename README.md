@@ -9,6 +9,8 @@ This codebase has one main file, "BracketFunctions.R", containing a variety of f
 
 Create a folder, with a file path `/.../folderName`. Inside your folder, place a CSV file, `fileName`, containing your table of probabilities. This same folder is where the output bracket will be written.
 
+The `data.table` package must be installed and loaded.
+
 ### Running the code
 
 To build the EV-optimal bracket relative to your data and scoring system, simply access the functions in BracketFunctions.R, and run `MM_Bracket_Builder(folder, filename, scoring)`, where:
