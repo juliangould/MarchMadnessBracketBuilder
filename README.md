@@ -3,17 +3,17 @@ This codebase builds an EV-maximizing March Madness bracket based on a scoring s
 
 ## How to use this code
 
-This codebase has one main file, "BracketFunctions.R", containing a variety of functions. Most of these functions have been written such that they can be used for any symmetric tournament, but the wrapper function `MM_Bracket_Builder` is specific to six-round/64-team brackets, like NCAA March Madness. The wrapper function takes three inputs, `folder`, `filename`, and `scoring`. 
+This codebase has one main file, "BracketFunctions.py", containing a variety of functions. Most of these functions have been written such that they can be used for any symmetric tournament, but the wrapper function `MM_Bracket_Builder` is specific to six-round/64-team brackets, like NCAA March Madness. The wrapper function takes three inputs, `folder`, `filename`, and `scoring`. 
 
 ### Setup
 
 Create a folder, with a file path `/.../folderName`. Inside your folder, place a CSV file, `fileName`, containing your table of probabilities. This same folder is where the output bracket will be written.
 
-The `data.table` package must be installed and loaded.
+The packages: `numpy`, `pandas`, `functools`, and `os` must be installed.
 
 ### Running the code
 
-To build the EV-optimal bracket relative to your data and scoring system, simply access the functions in BracketFunctions.R, and run `MM_Bracket_Builder(folder, filename, scoring)`, where:
+To build the EV-optimal bracket relative to your data and scoring system, simply run `from BracketFunctions import MM_Bracket_Builder`, and then run `MM_Bracket_Builder(folder, filename, scoring)`, where:
 + `folder` is a string containing the path to your folder `/.../folderName `;
 + `filename` is the name of your CSV file;
 + `scoring` is a string designating one of four common scoring systems for bracket competitions.
@@ -23,9 +23,9 @@ More details on the CSV file and scoring system are given in the following secti
 
 The data must be given as a CSV file with the following columns: "r1", "r2", "r3", "r4", "r5", "r6", "team_name", "team_seed", and "team_num". Given a bracket, oriented in the standard way with sixteen-team left and right sub-brackets, each seeded downward by 1-16 two times, the team numbers are given by enumerating the left sub-bracket downward by 1-32, and the right sub-bracket downward by 33-64. 
 
-The CSV file must have exactly 64 rows: one for each team. For team number i, The value given in each "rj" column is the probability that team i wins round j. Note that this is **not** the conditional probability that team i wins round j given it makes round j, but the raw probability. For example, the r6 value is the probability of winning the whole tournament. The Athletic currently provides this kind of data, or it can be backed into through Vegas Odds and some good old-fashioned elbow grease. 
+The CSV file must have exactly 64 rows: one for each team. For team number i, The value given in each "rj" column is the probability that team i wins round j. Note that this is **not** the conditional probability that team i wins round j given it makes round j, but the raw probability. For example, the r6 value is the probability of winning the whole tournament. The Athletic and Silver Bulletin currently provide this kind of data. Alternatively it can be backed into through Vegas Odds and some good old-fashioned elbow grease. 
 
-A sample data file can be found at `SampleData.CSV`
+A sample data file can be found at `SampleData.csv`
 
 
 ### Scoring Systems
@@ -44,9 +44,7 @@ The code will write a new CSV file to your folder called "EV_bracket.csv", conta
 
 ## Future work
 
-The code works, but it's slow. On my laptop, the code takes approximately two hours to run. This is because the recursive computation as written requires re-computing the same brackets many times. A dynamic programming approach could speed this up greatly, but I haven't had the time to focus on this. I will probably get to it this March though! 
-
-Second, outputting a picture of the bracket instead of the CSV file would be nice. 
+Outputting a picture of the bracket instead of the CSV file would be nice. 
 
 Additionally, as discussed in my [blog post](https://machineappreciation.wordpress.com/2022/03/18/march-madness-2022-mathematical-reflections/), the bracket selection could likely be improved by moving beyond simple EV maximization. I have coded up some of these tools, but I have yet to test them. 
 
